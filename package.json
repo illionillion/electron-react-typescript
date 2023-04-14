@@ -5,7 +5,10 @@
   "main": "dist/main.js",
   "scripts": {
     "dev": "rimraf dist && run-p dev:webpack dev:electron",
-    "build": "cross-env NODE_ENV=\"production\" webpack --progress",
+    "build": "cross-env NODE_ENV=\"production\" webpack --progress;npm run build-mac;npm run build-win;",
+    "build-mac": "electron-builder --mac --x64",
+    "build-win": "electron-builder --win --x64",
+    "build-linux": "electron-builder build --linux",
     "dev:webpack": "cross-env NODE_ENV=\"development\" webpack --progress",
     "dev:electron": "wait-on ./dist/index.html ./dist/main.js && electronmon ."
   },
@@ -26,6 +29,7 @@
     "@types/react-dom": "^18.0.11",
     "babel-loader": "^9.1.2",
     "cross-env": "^7.0.3",
+    "electron-builder": "^23.6.0",
     "electronmon": "^2.0.2",
     "framer-motion": "^10.12.0",
     "html-webpack-plugin": "^5.5.0",
@@ -45,5 +49,29 @@
     "patterns": [
       "dist/**/*"
     ]
+  },
+  "build": {
+    "appId": "net.electrontest.app.1st",
+    "files": [
+      "node_modules/",
+      "package.json",
+      "package-lock.json",
+      "dist/"
+    ],
+    "mac": {
+      "target": "dmg",
+      "icon": "src/app.png"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "src/app.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "directories": {
+      "output": "__build"
+    }
   }
 }
