@@ -1,0 +1,49 @@
+{
+  "name": "electron-react-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "rimraf dist && run-p dev:webpack dev:electron",
+    "build": "cross-env NODE_ENV=\"production\" webpack --progress",
+    "dev:webpack": "cross-env NODE_ENV=\"development\" webpack --progress",
+    "dev:electron": "wait-on ./dist/index.html ./dist/main.js && electronmon ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.21.4",
+    "@chakra-ui/react": "^2.5.5",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@types/electron": "^1.6.10",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.35",
+    "@types/react-dom": "^18.0.11",
+    "babel-loader": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "electronmon": "^2.0.2",
+    "framer-motion": "^10.12.0",
+    "html-webpack-plugin": "^5.5.0",
+    "npm-run-all": "^4.1.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rimraf": "^3.0.2",
+    "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4",
+    "wait-on": "^7.0.1",
+    "webpack": "^5.79.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.13.2"
+  },
+  "electronmon": {
+    "patterns": [
+      "dist/**/*"
+    ]
+  }
+}
