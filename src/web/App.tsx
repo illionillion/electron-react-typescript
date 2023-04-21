@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const App = () => {
   const [count, setCount] = useState<number>(0);
@@ -9,6 +9,9 @@ export const App = () => {
   const minus = () => {
     setCount((prev) => prev - 1);
   };
+  useEffect(() => {
+    console.log(count);
+  }, [count]);
   return (
     <Box
       w="full"
